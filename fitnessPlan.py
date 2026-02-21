@@ -1,5 +1,7 @@
-class Plan:
-    def __init__(self, time, budget, commitment, conditions, weight, wellbeing, body, outcome):
+
+class User:
+    def __init__(self, name, time, budget, commitment, conditions, weight, wellbeing, body, fitnessPlan):
+        self.name = name
         self.time = time
         self.budget = budget
         self.commitment = commitment
@@ -7,11 +9,26 @@ class Plan:
         self.weight = weight
         self.wellbeing = wellbeing
         self.body = body
-        #self.outcome = outcome(time, buget, other, other)
-        self.outcome = outcome
+        self.fitnessPlan = None #will not be defined until final plan is called
 
-class User:
-    def __init__(self, name, gender, Plan):
-        self.name = name
-        self.name = gender
-        self.Plan = Plan
+def finalPlan(user):
+    category = 0
+    #category = km.predict(user) 
+    # this is still under development, function will find users category by kmode predict function
+    return category
+
+def main():
+    sampleData = [     # training data here, values will be filled in later
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+    (0, 0, 0, 0, 0, 0, 0),
+]
+    #km.fit(sampleData)
+    #this part will be where the machine learning clustering happens
