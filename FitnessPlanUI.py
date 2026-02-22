@@ -54,11 +54,7 @@ class MyWidget(QtWidgets.QWidget):
         else:
             user_row = np.array([self.answers], dtype=object)
             category = fitnessPlan.finalPlan(user_row, fitnessPlan.km)
-            labels = {
-                0: "Strength Training",
-                1: "Stretching/Yoga",
-                2: "Cardio"
-            }
+            labels = { 0: "Strength Training", 1: "Stretching/Yoga", 2: "Cardio" }
             self.title.setText(
     f"Based on our previous clients, it indicates that people who share the same factor as you prefer to: {labels[category[0]]}"
 )
