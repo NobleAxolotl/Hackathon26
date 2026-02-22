@@ -1,39 +1,61 @@
 import numpy as np
-from kmodes.kmodes import Kmodes
+from kmodes.kmodes import KModes
+
 class User:
-    def __init__(self, name, time, budget, equipment, commitmentLevel, commitmentLength, conditions, mobility, wellbeing, improvement, body, fitnessPlan):
-        self.name = name
+    def __init__(self, name, time, budget, equipment, level, schedule, conditions, mobility, body, stress, improvement, fitnessPlan):
         self.time = time
         self.budget = budget
         self.equipment = equipment
-        self.commitmentLevel = commitmentLevel
-        self.commitmentLength = commitmentLength
+        self.level = level
+        self.schedule = schedule
         self.conditions = conditions
         self.mobility = mobility
-        self.wellbeing = wellbeing
-        self.improvement = improvement
         self.body = body
+        self.stress = stress
+        self.improvement = improvement
         self.fitnessPlan = None #will not be defined until final plan is called
 
-def finalPlan(user):
-    category = 0
-    #category = km.predict(user) 
-    # this is still under development, function will find users category by kmode predict function
+def finalPlan(user, km):
+    category = km.predict(user)
+    #function will find users category by kmode predict function
     return category
 
-def main():
-    sampleData = [     
-    ("45-60", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("60-above", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("30-40", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("60-above", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("45-60", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("30-40", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("30-40", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("30-40", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("45-60", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    ("30-40", 0, 0, 0, 0, 0, 0, 0, 0, 0),
-]
-    #km = KModes(n_clusters=4, init='Huang', n_init=5, verbose=1, random_state=42)
-    #clusters = km.fit_predict(sampleData)
+
+sampleData = [     
+    
+    ("Lose", "None", "Limitation", "Beginner"), # P1 2->Cardio
+    ("Lose", "None", "Limitation", "Beginner"), # P2
+    ("Lose", "None", "Limitation", "Beginner"),# P3
+    ("Lose", "None", "Limitation", "Beginner"), # P4
+    ("Lose", "Home", "No Limitation", "Beginner"),# P5
+    ("Lose", "None", "Limitation", "Beginner"),# P6
+
+    ("Gain", "Gym", "No Limitation", "Advanced"), # P7 0->strength
+    ("Gain", "Gym", "No Limitation", "Advanced"), # P8
+    ("Gain", "Gym", "No Limitation", "Advanced"), # P9
+    ("Gain", "Gym", "No Limitation", "Advanced"), # P10
+    ("Gain", "Gym", "No Limitation", "Beginner"), # P11
+    ("Gain", "Home", "No Limitation", "Advanced"), # P12
+
+    ("Maintain", "Home", "No Limitation", "Beginner"), # P13 1->Y/S
+    ("Maintain", "Home", "No Limitation", "Beginner"),  # P14
+    ("Maintain", "Home", "No Limitation", "Beginner"),  # P15
+    ("Maintain", "Home", "No Limitation", "Beginner"),  # P16
+    ("Maintain", "Gym", "No Limitation", "Beginner"), # P17
+    ("Maintain", "Home", "Limitation", "Beginner"),  # P18
+
+]    
+
+X = np.array(sampleData)
+km = KModes(n_clusters=3, init='Huang', n_init=5, verbose=1, random_state=42)
+km.fit(X)    
+
+#if __name__ == "__main__":
+print(X.shape)
+print(type(X))
+    
+clusters = km.fit_predict(X)
+print(clusters)
+print(km.cluster_centroids_)
+
     #this part will be where the machine learning clustering happens
