@@ -1,3 +1,5 @@
+import numpy as np
+from kmodes.kmodes import Kmodes
 class User:
     def __init__(self, name, time, budget, equipment, commitmentLevel, commitmentLength, conditions, mobility, wellbeing, improvement, body, fitnessPlan):
         self.name = name
