@@ -50,12 +50,10 @@ X = np.array(sampleData)
 km = KModes(n_clusters=3, init='Huang', n_init=5, verbose=1, random_state=42)
 km.fit(X)    
 
-#if __name__ == "__main__":
+#these print statements are for testing purposes to see the data and the clusters that were formed
 print(X.shape)
-print(type(X))
-    
+print(type(X))    
 clusters = km.fit_predict(X)
 print(clusters)
 print(km.cluster_centroids_)
-
-    #this part will be where the machine learning clustering happens
+#this part will be where the machine learning clustering happens
